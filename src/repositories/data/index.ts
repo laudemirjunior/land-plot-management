@@ -1,13 +1,13 @@
 const getAll = "SELECT * FROM dados.dados";
 
-const getOne = (id: number) => {
+const getData = (id: number) => {
   return {
     text: "SELECT * FROM dados.dados WHERE id = $1",
     values: [id],
   };
 };
 
-const createDado = (
+const createData = (
   nome: string,
   cpf_cnpj: string,
   nome_logradouro: string,
@@ -28,18 +28,18 @@ const createDado = (
   };
 };
 
-const patchDado = (key: string, data: any, id: string) => {
+const patchData = (key: string, data: any, id: string) => {
   return {
     text: `UPDATE dados.dados SET ${key} = $1 where "id" = ${id}`,
     values: [data[key]],
   };
 };
 
-const deleteDado = (id: number) => {
+const deleteData = (id: number) => {
   return {
     text: "DELETE FROM dados.dados WHERE id = $1",
     values: [id],
   };
 };
 
-export { getAll, getOne, createDado, patchDado, deleteDado };
+export { getAll, getData, createData, patchData, deleteData };

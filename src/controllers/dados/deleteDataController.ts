@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
-import pool from "../../connection";
-import { deleteDado } from "../../repositories/dados";
+import { deleteDataService } from "../../services";
+import { handleError } from "../../utils";
 
 const deleteDataController = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const client = await pool.connect();
-
-  await client.query(deleteDado(+id));
-
-  client.release();
-  return res.status(204).json();
+  try {
+    const { id } = req.params;
+    await deleteDataService(+id);
+    res.status(204).json();
+  } catch (error) {
+    return handleError(error, res);
+  }
 };
 
 export { deleteDataController };
