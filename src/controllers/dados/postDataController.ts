@@ -11,7 +11,7 @@ const postDataController = async (req: Request, res: Response) => {
       numero,
       complemento,
       data_nascimento,
-    } = req.body;
+    } = req.validated;
     await postDataService(
       nome,
       cpf_cnpj,

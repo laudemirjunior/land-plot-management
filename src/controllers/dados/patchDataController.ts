@@ -5,7 +5,7 @@ import { handleError } from "../../utils";
 const patchDataController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const data = req.body;
+    const data = req.validated;
     await patchDataService(data, id);
     res.status(204).json();
   } catch (error) {
