@@ -1,11 +1,15 @@
 import express, { Router } from "express";
+import swaggerUi from "swagger-ui-express";
+import swaggerDocument from "../swagger.json";
 import { dadosRouter } from "./routes";
 
 const app = express();
 
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 const router = Router();
 
-router.use("/dados", dadosRouter);
+router.use("/data", dadosRouter);
 
 app.use(express.json());
 

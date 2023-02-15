@@ -1,0 +1,89 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "TopoCart API",
+    "description": "This is TopoCart API.",
+    "version": "1.0.0"
+  },
+  "basePath": "/",
+  "paths": {
+    "/data": {
+      "post": {
+        "tags": ["Data"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "cpf_cnpj": {
+                    "type": "string"
+                  },
+                  "nome_logradouro": {
+                    "type": "string"
+                  },
+                  "numero": {
+                    "type": "number"
+                  },
+                  "complemento": {
+                    "type": "string"
+                  },
+                  "data_nascimento": {
+                    "type": "string"
+                  }
+                }
+              },
+              "example": {
+                "nome": "John Doe",
+                "cpf_cnpj": "12345678910",
+                "nome_logradouro": "Rua dos Bobos",
+                "numero": 0,
+                "complemento": "Casa",
+                "data_nascimento": "01/01/2000"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "msg": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "msg": "Created"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Data"]
+      },
+      "delete": {
+        "tags": ["Data"]
+      },
+      "patch": {
+        "tags": ["Data"]
+      }
+    },
+    "/data/{id}": {
+      "get": {
+        "tags": ["Data"]
+      }
+    }
+  }
+}

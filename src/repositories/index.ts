@@ -1,3 +1,12 @@
-import { createData, deleteData, getAll, getData, patchData } from "./data";
+import { createData, deleteData, getAllData, getData, patchData } from "./data";
+import { getAllLegacy, getLegacy } from "./legacy";
 
-export { getAll, getData, createData, patchData, deleteData };
+export {
+  getAllData,
+  getData,
+  createData,
+  patchData,
+  deleteData,
+  getAllLegacy,
+  getLegacy,
+};

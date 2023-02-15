@@ -1,4 +1,4 @@
-import pool from "../../connection";
+import { pool } from "../../connection";
 import { deleteData } from "../../repositories";
 
 const deleteDataService = async (id: number) => {

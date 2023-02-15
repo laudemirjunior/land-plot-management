@@ -1,4 +1,4 @@
-import pool from "../../connection";
+import { pool } from "../../connection";
 import { createData } from "../../repositories";
 
 const postDataService = async (

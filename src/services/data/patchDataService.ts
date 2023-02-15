@@ -1,4 +1,4 @@
-import pool from "../../connection";
+import { pool } from "../../connection";
 import { patchData } from "../../repositories";
 
 const patchDataService = async (id: string, data: any) => {

@@ -1,4 +1,4 @@
-const getAll = "SELECT * FROM dados.dados";
+const getAllData = "SELECT * FROM dados.dados";
 
 const getData = (id: number) => {
   return {
@@ -42,4 +42,4 @@ const deleteData = (id: number) => {
   };
 };
 
-export { getAll, getData, createData, patchData, deleteData };
+export { getAllData, getData, createData, patchData, deleteData };
