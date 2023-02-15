@@ -1,5 +1,7 @@
 CREATE SCHEMA dados;
 
+SET DateStyle TO European;
+
 CREATE TABLE dados.dados (
     id SERIAL PRIMARY KEY,
     nome TEXT,
