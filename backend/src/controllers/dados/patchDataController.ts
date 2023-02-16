@@ -6,7 +6,7 @@ const patchDataController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const data = req.validated;
-    await patchDataService(data, id);
+    await patchDataService(id, data);
     res.status(204).json();
   } catch (error) {
     return handleError(error, res);

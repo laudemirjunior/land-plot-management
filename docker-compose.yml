@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  postgres:
+  db:
     image: postgres:alpine
     container_name: topocart-postgres
     ports:
@@ -12,3 +12,33 @@ services:
     volumes:
       - ./db/db.sql:/docker-entrypoint-initdb.d/db.sql
     restart: always
+  backend:
+    image: node:alpine
+    container_name: topocart-backend
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "3333:3333"
+    volumes:
+      - ./backend:/usr/src/app
+    working_dir: /usr/src/app
+    command: sh -c "yarn && yarn dev"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+  frontend:
+    image: node:alpine
+    container_name: topocart-frontend
+    restart: always
+    depends_on:
+      - db
+      - backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/usr/src/app
+    working_dir: /usr/src/app
+    command: sh -c "yarn && yarn start"

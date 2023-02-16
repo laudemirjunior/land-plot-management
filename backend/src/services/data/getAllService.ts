@@ -1,5 +1,11 @@
 import { pool } from "../../connection";
+import { IDataModal } from "../../models";
 import { getAllData, getAllLegacy } from "../../repositories";
+
+interface ResultProps {
+  data: IDataModal;
+  legacy: IDataModal;
+}
 
 const getAllService = async () => {
   const client = await pool.connect();
@@ -7,7 +13,7 @@ const getAllService = async () => {
   const resultLegacy = await client.query(getAllLegacy);
   client.release();
 
-  const result: any = [];
+  const result: ResultProps[] = [];
 
   resultData.rows.map((data) => {
     const legacyResult = resultLegacy.rows.find(
