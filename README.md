@@ -4,6 +4,12 @@
 sudo docker-compose up --build
 ```
 
+# Swagger
+
+```
+http://localhost:3333/api-docs/
+```
+
 # Teste para desenvolvedor full-stack da Topocart
 
 # Protótipo
