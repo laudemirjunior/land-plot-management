@@ -1,8 +1,8 @@
-import moment from "moment"
-import arrowUp from "../../assets/arrowUp.png"
-import close from "../../assets/close.png"
-import { PropsGetAllDataRequest } from "../../interfaces"
-import "./styles.scss"
+import moment from "moment";
+import arrowUp from "../../assets/arrowUp.png";
+import close from "../../assets/close.png";
+import { PropsGetAllDataRequest } from "../../interfaces";
+import "./styles.scss";
 
 interface Props {
   item: PropsGetAllDataRequest | any;
@@ -107,8 +107,8 @@ export default function Card({ item, setDataItem }: Props) {
             {data[0] !== "id" && (
               <div
                 className={`card ${
-                  formatDate(data[0], item.legacy[data[0]]) !== data[1] &&
-                  "card-dif"
+                  formatDate(data[0], item.legacy[data[0]]) !==
+                    formatDate(data[0], data[1] as string) && "card-dif"
                 }`}
               >
                 <div className="card-content">
