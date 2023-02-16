@@ -1,6 +1,12 @@
+# Para rodar o projeto colo em seu terminal
+
+```
+sudo docker-compose up --build
+```
+
 # Teste para desenvolvedor full-stack da Topocart
 
-# Protótipo 
+# Protótipo
 
 [Link](https://www.figma.com/proto/Pae546E8G3LbazxilOcesE/Teste-para-PS?node-id=1%3A4&scaling=scale-down&page-id=0%3A1)
 
