@@ -10,7 +10,6 @@ const patchDataService = async (id: string, data: any) => {
   }
   Object.keys(data).map(async (key) => {
     const datas = await client.query(patchData(key, data, id));
-    console.log(datas);
   });
   client.release();
 };

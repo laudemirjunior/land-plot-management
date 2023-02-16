@@ -1,12 +1,12 @@
 const getAllData = () => {
   return {
-    text: "SELECT * FROM dados.dados",
+    text: "SELECT * FROM dados.dados ORDER BY id ASC",
   };
 };
 
 const getData = (id: number) => {
   return {
-    text: "SELECT * FROM dados.dados WHERE id = $1",
+    text: "SELECT * FROM dados.dados WHERE id = $1 ORDER BY id ASC",
     values: [id],
   };
 };
