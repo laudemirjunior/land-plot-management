@@ -1,8 +1,8 @@
-import moment from "moment";
-import arrowUp from "../../assets/arrowUp.png";
-import close from "../../assets/close.png";
-import { PropsGetAllDataRequest } from "../../interfaces";
-import "./styles.scss";
+import moment from "moment"
+import arrowUp from "../../assets/arrowUp.png"
+import close from "../../assets/close.png"
+import { PropsGetAllDataRequest } from "../../interfaces"
+import "./styles.scss"
 
 interface Props {
   item: PropsGetAllDataRequest | any;
@@ -45,7 +45,7 @@ export default function Card({ item, setDataItem }: Props) {
 
   const valueInput = (type: string, value: string) => {
     if (type === "data_nascimento") {
-      return moment(value).format("YYYY-MM-DD");
+      return moment(value).utc().format("YYYY-MM-DD");
     } else if (type === "numero") {
       return +value;
     } else {
@@ -55,7 +55,7 @@ export default function Card({ item, setDataItem }: Props) {
 
   const formatText = (type: string, value: string) => {
     if (type === "data_nascimento") {
-      return moment(value).format("DD/MM/YYYY");
+      return moment(value).utc().format("DD/MM/YYYY");
     } else {
       return value;
     }
@@ -63,7 +63,7 @@ export default function Card({ item, setDataItem }: Props) {
 
   const formatDate = (type: string, value: string) => {
     if (type === "data_nascimento") {
-      return moment(value).format("YYYY-MM-DD");
+      return moment(value).utc().format("YYYY-MM-DD");
     } else {
       return value;
     }
