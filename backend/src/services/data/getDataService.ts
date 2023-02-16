@@ -6,7 +6,7 @@ const getDataService = async (id: number) => {
   const resultData = await client.query(getData(+id));
   const resultLegacy = await client.query(getLegacy(+id));
   client.release();
-  return { ...resultData.rows, ...resultLegacy.rows };
+  return { data: resultData.rows[0], legacy: resultLegacy.rows[0] };
 };
 
 export { getDataService };
