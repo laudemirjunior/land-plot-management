@@ -1,7 +1,7 @@
 import moment from "moment";
 import arrowUp from "../../assets/arrowUp.png";
 import close from "../../assets/close.png";
-import { PropsGetAllDataRequest } from "../../services/getAllDataRequest";
+import { PropsGetAllDataRequest } from "../../interfaces";
 import "./styles.scss";
 
 interface Props {
@@ -14,11 +14,11 @@ export default function Card({ item, setDataItem }: Props) {
     return cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
   }
 
-  const changeData = (key: string, value: string) => {
+  const changeData = (key: string, value: string | number) => {
     const newData = item;
     if (key === "cpf_cnpj") {
       if (String(value).length < 15) {
-        item.data[key] = replaceCPF(value);
+        item.data[key] = replaceCPF(value as string);
       }
     } else {
       item.data[key] = value;
@@ -61,6 +61,14 @@ export default function Card({ item, setDataItem }: Props) {
     }
   };
 
+  const formatDate = (type: string, value: string) => {
+    if (type === "data_nascimento") {
+      return moment(value).format("YYYY-MM-DD");
+    } else {
+      return value;
+    }
+  };
+
   const icon = (type: string, data: string[]) => {
     const isType = typeInput(type);
     if (isType === "date") {
@@ -78,7 +86,7 @@ export default function Card({ item, setDataItem }: Props) {
             src={arrowUp}
             alt="card-arrowUp"
             className="card-down"
-            onClick={() => changeData(data[0], String(isNegative(+data[1])))}
+            onClick={() => changeData(data[0], isNegative(+data[1]))}
           />
         </div>
       );
@@ -88,14 +96,6 @@ export default function Card({ item, setDataItem }: Props) {
           <img src={close} alt="close" />
         </span>
       );
-    }
-  };
-
-  const formatDate = (type: string, value: string) => {
-    if (type === "data_nascimento") {
-      return moment(value).format("YYYY-MM-DD");
-    } else {
-      return value;
     }
   };
 

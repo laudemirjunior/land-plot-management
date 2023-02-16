@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import Card from "../../components/card";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
-import {
-  getAllDataRequest,
-  PropsGetAllDataRequest,
-} from "../../services/getAllDataRequest";
+import { PropsGetAllDataRequest } from "../../interfaces";
+import { getAllDataRequest } from "../../services/getAllDataRequest";
 import { patchDataRequest } from "../../services/patchDataRequest";
 import "./styles.scss";
 
@@ -16,7 +14,6 @@ export default function Home() {
   const [dataItem, setDataItem] = useState<PropsGetAllDataRequest>(
     {} as PropsGetAllDataRequest
   );
-
   const [page, setPage] = useState(0);
 
   useEffect(() => {
@@ -26,8 +23,7 @@ export default function Home() {
       setDataItem(dataRequest[page]);
     };
     getAllData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [page]);
 
   const patchData = async () => {
     delete dataItem.data.id;
@@ -49,14 +45,12 @@ export default function Home() {
   };
 
   return (
-    <>
-      <div className="home-container">
-        <Header plusPage={plusPage} minusPage={minusPage} dataItem={dataItem} />
-        {Object.keys(dataItem).length !== 0 && (
-          <Card item={dataItem} setDataItem={setDataItem} />
-        )}
-        <Footer patchData={patchData} />
-      </div>
-    </>
+    <div className="home-container">
+      <Header plusPage={plusPage} minusPage={minusPage} dataItem={dataItem} />
+      {Object.keys(dataItem).length !== 0 && (
+        <Card item={dataItem} setDataItem={setDataItem} />
+      )}
+      <Footer patchData={patchData} />
+    </div>
   );
 }

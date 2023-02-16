@@ -1,6 +1,6 @@
 import arrowLeft from "../../assets/arrowLeft.png";
 import arrowRight from "../../assets/arrowRight.png";
-import { PropsGetAllDataRequest } from "../../services/getAllDataRequest";
+import { PropsGetAllDataRequest } from "../../interfaces";
 import "./styles.scss";
 
 interface Props {
