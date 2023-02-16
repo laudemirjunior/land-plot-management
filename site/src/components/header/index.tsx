@@ -33,7 +33,7 @@ export default function Header({
           <img
             src={arrowRight}
             alt="ArrowDown"
-            className={`${page === totalItens && "opacity"}`}
+            className={`${page === totalItens - 1 && "opacity"}`}
           />
         </span>
       </div>
