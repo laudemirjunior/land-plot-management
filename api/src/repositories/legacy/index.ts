@@ -1,4 +1,8 @@
-const getAllLegacy = "SELECT * FROM legado.dados";
+const getAllLegacy = () => {
+  return {
+    text: "SELECT * FROM legado.dados",
+  };
+};
 
 const getLegacy = (id: number) => {
   return {

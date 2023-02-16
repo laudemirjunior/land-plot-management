@@ -26,6 +26,7 @@ export default function Home() {
       setDataItem(dataRequest[page]);
     };
     getAllData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const patchData = async () => {
@@ -49,17 +50,13 @@ export default function Home() {
 
   return (
     <>
-      {Object.keys(dataItem).length !== 0 && (
-        <div className="home-container">
-          <Header
-            plusPage={plusPage}
-            minusPage={minusPage}
-            dataItem={dataItem}
-          />
+      <div className="home-container">
+        <Header plusPage={plusPage} minusPage={minusPage} dataItem={dataItem} />
+        {Object.keys(dataItem).length !== 0 && (
           <Card item={dataItem} setDataItem={setDataItem} />
-          <Footer patchData={patchData} />
-        </div>
-      )}
+        )}
+        <Footer patchData={patchData} />
+      </div>
     </>
   );
 }

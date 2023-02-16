@@ -1,4 +1,8 @@
-const getAllData = "SELECT * FROM dados.dados";
+const getAllData = () => {
+  return {
+    text: "SELECT * FROM dados.dados",
+  };
+};
 
 const getData = (id: number) => {
   return {

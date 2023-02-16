@@ -34,7 +34,6 @@ services:
     container_name: topocart-frontend
     restart: always
     depends_on:
-      - db
       - backend
     ports:
       - "3000:3000"

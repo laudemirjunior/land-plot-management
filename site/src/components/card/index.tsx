@@ -10,9 +10,19 @@ interface Props {
 }
 
 export default function Card({ item, setDataItem }: Props) {
-  const changeData = (key: string | number, value: string | number) => {
+  function replaceCPF(cpf: string) {
+    return cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+  }
+
+  const changeData = (key: string, value: string) => {
     const newData = item;
-    item.data[key] = value;
+    if (key === "cpf_cnpj") {
+      if (String(value).length < 15) {
+        item.data[key] = replaceCPF(value);
+      }
+    } else {
+      item.data[key] = value;
+    }
     setDataItem({ ...newData });
   };
 
@@ -33,9 +43,9 @@ export default function Card({ item, setDataItem }: Props) {
     }
   };
 
-  const valueInput = (type: string, value: string | number | Date) => {
+  const valueInput = (type: string, value: string) => {
     if (type === "data_nascimento") {
-      return moment(value as Date).format("YYYY-MM-DD");
+      return moment(value).format("YYYY-MM-DD");
     } else if (type === "numero") {
       return +value;
     } else {
@@ -43,7 +53,15 @@ export default function Card({ item, setDataItem }: Props) {
     }
   };
 
-  const icon = (type: string, data: number[]) => {
+  const formatText = (type: string, value: string) => {
+    if (type === "data_nascimento") {
+      return moment(value).format("DD/MM/YYYY");
+    } else {
+      return value;
+    }
+  };
+
+  const icon = (type: string, data: string[]) => {
     const isType = typeInput(type);
     if (isType === "date") {
       return null;
@@ -54,13 +72,13 @@ export default function Card({ item, setDataItem }: Props) {
             src={arrowUp}
             alt="arrowUp"
             className="card-up"
-            onClick={() => changeData(data[0], (data[1] as number) + 1)}
+            onClick={() => changeData(data[0], data[1] + 1)}
           />
           <img
             src={arrowUp}
             alt="card-arrowUp"
             className="card-down"
-            onClick={() => changeData(data[0], isNegative(data[1] as number))}
+            onClick={() => changeData(data[0], String(isNegative(+data[1])))}
           />
         </div>
       );
@@ -73,15 +91,24 @@ export default function Card({ item, setDataItem }: Props) {
     }
   };
 
+  const formatDate = (type: string, value: string) => {
+    if (type === "data_nascimento") {
+      return moment(value).format("YYYY-MM-DD");
+    } else {
+      return value;
+    }
+  };
+
   return (
     <>
-      {Object.entries(item.data).map((data) => {
+      {Object.entries(item.data).map((data, index) => {
         return (
-          <>
+          <div key={index}>
             {data[0] !== "id" && (
               <div
                 className={`card ${
-                  item.legacy[data[0]] !== data[1] && "card-dif"
+                  formatDate(data[0], item.legacy[data[0]]) !== data[1] &&
+                  "card-dif"
                 }`}
               >
                 <div className="card-content">
@@ -89,28 +116,23 @@ export default function Card({ item, setDataItem }: Props) {
                     <h1>{data[0]}</h1>
                     <div className="card-input">
                       <input
-                        value={
-                          valueInput(
-                            data[0],
-                            data[1] as string | number | Date
-                          ) as string
-                        }
+                        value={valueInput(data[0], String(data[1]))}
                         onChange={(e) => changeData(data[0], e.target.value)}
-                        type={typeInput(data[0] as string)}
+                        type={typeInput(data[0])}
                         min="0"
                       />
-                      {icon(data[0] as string, data as number[])}
+                      {icon(data[0], data as string[])}
                     </div>
                   </div>
                   <div className="card-line" />
                   <div className="card-legacy">
                     <h1>{data[0]} - Legado</h1>
-                    <h2>{item.legacy[data[0]]}</h2>
+                    <h2>{formatText(data[0], item.legacy[data[0]])}</h2>
                   </div>
                 </div>
               </div>
             )}
-          </>
+          </div>
         );
       })}
     </>

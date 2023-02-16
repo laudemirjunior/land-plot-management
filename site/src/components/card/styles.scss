@@ -24,6 +24,10 @@
     font-weight: 500;
   }
 
+  input[type="date"] {
+    letter-spacing: -0.6px;
+  }
+
   textarea:focus,
   input:focus {
     outline: none;

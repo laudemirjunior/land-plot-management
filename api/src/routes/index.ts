@@ -1,3 +1,8 @@
+import { Router } from "express";
 import { dadosRouter } from "./dados";
 
-export { dadosRouter };
+const router = Router();
+
+router.use("/data", dadosRouter);
+
+export { router };

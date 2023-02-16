@@ -9,8 +9,8 @@ interface ResultProps {
 
 const getAllService = async () => {
   const client = await pool.connect();
-  const resultData = await client.query(getAllData);
-  const resultLegacy = await client.query(getAllLegacy);
+  const resultData = await client.query(getAllData());
+  const resultLegacy = await client.query(getAllLegacy());
   client.release();
 
   const result: ResultProps[] = [];

@@ -1,21 +1,11 @@
-import cors from "cors";
-import express, { Router } from "express";
-import swaggerUi from "swagger-ui-express";
-import swaggerDocument from "../swagger.json";
-import { dadosRouter } from "./routes";
+import { app } from "./app";
 
-const app = express();
+const PORT = 3333;
 
-app.use(cors());
-
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-const router = Router();
-
-router.use("/data", dadosRouter);
-
-app.use(express.json());
-
-app.use(router);
-
-app.listen(3333, () => "server running on port 3333");
+try {
+  app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+  });
+} catch (e) {
+  console.error(`An error occurred, server could not be started: ${e}`);
+}
