@@ -1,4 +1,4 @@
-# Para rodar o projeto colo em seu terminal
+# Para rodar o projeto digite em seu terminal:
 
 ```
 sudo docker-compose up --build
