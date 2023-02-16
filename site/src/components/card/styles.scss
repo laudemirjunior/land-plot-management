@@ -1,0 +1,83 @@
+.card {
+  height: 102px;
+  margin: 11px;
+  border-radius: 4px;
+  background-color: #d9d9d9;
+
+  .card-content {
+    padding: 5px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .card-input {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  input {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  textarea:focus,
+  input:focus {
+    outline: none;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  h1,
+  h2 {
+    color: #3a3a3a;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14.52px;
+  }
+
+  h2 {
+    color: #000000;
+    margin-top: 7px;
+  }
+
+  .card-line {
+    border: 1px solid #00000054;
+    margin-top: 5.5px;
+    margin-bottom: 9.5px;
+  }
+
+  span {
+    cursor: pointer;
+  }
+
+  .card-arrows {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .card-up {
+    margin-bottom: -2px;
+  }
+
+  .card-down {
+    transform: rotate(180deg);
+    margin-left: 1px;
+  }
+}
+
+.card-dif {
+  background-color: #d3be0046;
+}

@@ -21,7 +21,7 @@ services:
     ports:
       - "3333:3333"
     volumes:
-      - ./backend:/usr/src/app
+      - ./api:/usr/src/app
     working_dir: /usr/src/app
     command: sh -c "yarn && yarn dev"
     logging:
@@ -39,6 +39,6 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./frontend:/usr/src/app
+      - ./site:/usr/src/app
     working_dir: /usr/src/app
     command: sh -c "yarn && yarn start"
