@@ -20,7 +20,11 @@ export default function Card({ item, setDataItem }: Props) {
 
   const changeData = (key: string, value: string | number) => {
     const newData = item;
-    if (key === "numero") {
+    if (key === "nome") {
+      if (!/[^\p{L}\s]+/u.test(value as string)) {
+        item.data[key] = value;
+      }
+    } else if (key === "numero") {
       if (value < 0 || value === "") {
         item.data[key] = 0;
       } else {
