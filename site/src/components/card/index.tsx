@@ -10,15 +10,26 @@ interface Props {
 }
 
 export default function Card({ item, setDataItem }: Props) {
-  function replaceCPF(cpf: string) {
-    return cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+  function replaceCpf(cpf: string) {
+    cpf = cpf.replace(/\D/g, "");
+    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2");
+    cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    return cpf;
   }
 
   const changeData = (key: string, value: string | number) => {
     const newData = item;
-    if (key === "cpf_cnpj") {
+    if (key === "numero") {
+      if (value < 0 || value === "") {
+        item.data[key] = 0;
+      } else {
+        item.data[key] = value;
+      }
+    } else if (key === "cpf_cnpj") {
       if (String(value).length < 15) {
-        item.data[key] = replaceCPF(value as string);
+        value = replaceCpf(String(value));
+        item.data[key] = value;
       }
     } else {
       item.data[key] = value;

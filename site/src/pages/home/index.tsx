@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import Card from "../../components/card";
-import Footer from "../../components/footer";
-import Header from "../../components/header";
-import { PropsGetAllDataRequest } from "../../interfaces";
-import { getAllDataRequest } from "../../services/getAllDataRequest";
-import { patchDataRequest } from "../../services/patchDataRequest";
-import "./styles.scss";
+import { useEffect, useState } from "react"
+import Card from "../../components/card"
+import Footer from "../../components/footer"
+import Header from "../../components/header"
+import { PropsGetAllDataRequest } from "../../interfaces"
+import { getAllDataRequest } from "../../services/getAllDataRequest"
+import { patchDataRequest } from "../../services/patchDataRequest"
+import "./styles.scss"
 
 export default function Home() {
   const [data, setData] = useState<PropsGetAllDataRequest[]>(
@@ -46,7 +46,7 @@ export default function Home() {
 
   return (
     <div className="home-container">
-      <Header plusPage={plusPage} minusPage={minusPage} dataItem={dataItem} />
+      <Header plusPage={plusPage} minusPage={minusPage} dataItem={dataItem} totalItens={data.length} page={page}/>
       {Object.keys(dataItem).length !== 0 && (
         <Card item={dataItem} setDataItem={setDataItem} />
       )}
