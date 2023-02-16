@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import { patchDataService } from "../../services";
-import { handleError } from "../../utils";
+import { Request, Response } from "express"
+import { patchDataService } from "../../services"
+import { handleError } from "../../utils"
 
 const patchDataController = async (req: Request, res: Response) => {
   try {
@@ -13,4 +13,5 @@ const patchDataController = async (req: Request, res: Response) => {
   }
 };
 
-export { patchDataController };
+export { patchDataController }
+
